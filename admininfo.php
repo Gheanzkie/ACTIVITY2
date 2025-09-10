@@ -1,10 +1,16 @@
 <?php
-session_start();
-include_once('act2server.php'); 
+session_start(); 
+include_once('act2server.php');
 
-
+if(!isset($_SESSION['admin'])) {
+    echo "<script>alert('Please Login first'); window.location.href='admin.php';</script>";
+    exit();
+}
+    
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,30 +28,29 @@ include_once('act2server.php');
     <table class="table table-bordered table-striped mt-3">
       <thead class="table-dark">
         <tr>
-         
           <th>Name</th>
           <th>Address</th>
           <th>Birthdate</th>
           <th>Age</th>
           <th>Contact</th>
           <th>Sex</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php
         $query = "SELECT * FROM `profile`";
         $result = mysqli_query($conn, $query);
+
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>
-            
                         <td>{$row['name']}</td>
                         <td>{$row['address']}</td>
                         <td>{$row['birthdate']}</td>
                         <td>{$row['age']}</td>
                         <td>{$row['contact']}</td>
                         <td>{$row['sex']}</td>
-    
                         <td>
                           <a href='update.php?id={$row['id']}' class='btn btn-sm btn-info'>Update</a>
                           <a href='delete.php?id={$row['id']}' class='btn btn-sm btn-danger'>Delete</a>
@@ -53,11 +58,12 @@ include_once('act2server.php');
                       </tr>";
             }
         } else {
-            echo "<tr><td colspan='10' class='text-center'>No users found</td></tr>";
+            echo "<tr><td colspan='7' class='text-center'>No users found</td></tr>";
         }
         ?>
       </tbody>
     </table>
+
     <a href="logout.php" class="btn btn-danger mt-3">Logout</a>
   </div>
 </body>

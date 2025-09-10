@@ -24,18 +24,23 @@ include_once ('act2server.php');
 </head>
 <body>
     <div class="bg-dark d-flex justify-content-center align-items-center w-100 vh-100">
-        <div class="bg-white w-25 h-30 rounded p-4" >
+        <div class="bg-white w-25 h-30 rounded p-4 justify-content-center " >
+            <div class="d-flex justify-content-center">
             <h2>Delete</h2>
+            </div>
 
             <form method="POST">
+                <div class="d-flex gap-2 justify-content-center">
 
                 <button class="btn btn-success" type="submit" name="delete">Delete</button>
-            </div>
+                <a href= "admininfo.php"class="btn btn-dark">back</a> 
+                </div>
+           
             </form>
+        </div>
 
 
         </div>
-    </div>
     
 </body>
 </html>

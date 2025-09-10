@@ -1,5 +1,36 @@
 <?php
-include_once('act2server.php');
+session_start();
+include ('adminserver.php');
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  $query = "SELECT * FROM `admin` WHERE `username`= '$username' AND `password`= '$password'";
+  $result = mysqli_query($conn, $query);
+
+
+  if($result && mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result));
+
+          $_SESSION['admin'] = $username;
+          echo "<script>alert('Welcome admin!'); window.location.href='admininfo.php';</script>";
+
+          exit();
+    } 
+    else {
+        echo "<script>alert('Invalid username or password'); window.location.href='index.php';</script>";
+        
+    }
+
+
+
+
+  }
+  
+
+
 ?>
 
 

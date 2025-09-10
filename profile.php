@@ -4,7 +4,7 @@ include_once('act2server.php');
 
 
 if(!isset($_SESSION['name'])) {
-    echo "<script>alert('Please Login first'); window.location.href='login.php';</script>";
+    echo "<script>alert('Please Login first'); window.location.href='index.php';</script>";
     exit();
 }
     
